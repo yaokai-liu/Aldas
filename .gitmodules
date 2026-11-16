@@ -1,0 +1,3 @@
+[submodule "extstd"]
+	path = extstd
+	url = git@github.com:yaokai-liu/extstd.git
