@@ -44,6 +44,7 @@ typedef struct Dict {
   destruct_t *fn_rel_key;
   destruct_t *fn_rel_ele;
 } Dict;
+const size_t sizeof_dict = sizeof(Dict);
 
 inline Dict *
 Dict_new(const uint32_t key_size, const uint32_t ele_size, key_t *fn_key, const uint32_t dict_id,

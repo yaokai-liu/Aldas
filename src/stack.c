@@ -9,12 +9,13 @@
 #include "allocator.h"
 #include <string.h>
 
-struct Stack {
+typedef struct Stack {
   const Allocator *allocator;
   uint32_t allocated;
   uint32_t used;
   void *stack;
-};
+} Stack;
+const uint32_t sizeof_stack = sizeof(Stack);
 
 #ifndef ALLOC_LEN
 #define ALLOC_LEN 32

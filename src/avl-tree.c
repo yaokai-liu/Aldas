@@ -22,7 +22,6 @@ typedef struct AVLTree {
   compare_t *fn_cmp;
   AVLNode *root;
 } AVLTree;
-
 const size_t sizeof_avltree = sizeof(AVLTree);
 
 static AVLNode *AVLNode_new(uint64_t key, const AVLTree *tree);

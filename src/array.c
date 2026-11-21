@@ -7,15 +7,14 @@
 
 #include "array.h"
 
-struct Array {
+typedef struct Array {
   const Allocator *allocator;
   uint32_t array_id;
   uint32_t alloc_len;
   uint32_t ele_size;
   uint32_t used_len;
   void *elements;
-};
-
+} Array;
 const size_t sizeof_array = sizeof(Array);
 
 #ifndef ALLOC_LEN

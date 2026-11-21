@@ -22,7 +22,7 @@ typedef struct {
   void *value;
 } TrieNodeItem;
 
-void Trie_dump(
+_SHARED_API void Trie_dump(
   Trie *trie, Array /*<TrieKeyMappingItem>*/ *key_array, Array /*<TrieNodeItem>*/ *node_array
 );
 

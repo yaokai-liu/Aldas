@@ -18,7 +18,7 @@ typedef struct AVLPair {
 
 typedef void traverse_t(const AVLPair *, ...);
 
-Array /*<AVLPair>*/ *
+_SHARED_API Array /*<AVLPair>*/ *
   AVLTree_inorder_traversal(AVLTree *tree, uint32_t id, const Allocator *allocator);
 
 #endif  // MACHINE_AVL_TRAVERSAL_H

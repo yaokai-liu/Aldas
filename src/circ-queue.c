@@ -19,7 +19,6 @@ typedef struct CircQueue /*extend Array*/ {
   uint32_t head;
   uint32_t tail;
 } CircQueue;
-
 const size_t sizeof_circ_queue = sizeof(CircQueue);
 
 #ifndef ALLOC_LEN

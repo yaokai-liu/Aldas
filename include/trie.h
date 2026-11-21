@@ -10,16 +10,16 @@
 
 #include <stdint.h>
 #include "allocator.h"
-#include "key_t.h"
 
 typedef struct Trie Trie;
+extern _SHARED_API const uint32_t sizeof_trie;
 
-Trie *Trie_new(uint32_t key_size, uint64_t (*fn_key)(const void *), const Allocator *allocator);
-void Trie_destroy(Trie *tree);
+_SHARED_API Trie *Trie_new(uint32_t key_size, uint64_t (*fn_key)(const void *), const Allocator *allocator);
+_SHARED_API void Trie_destroy(Trie *tree);
 
-uint64_t Trie_count(const Trie *tree);
-void *Trie_get(const Trie *tree, const void *key);
-void Trie_set(Trie *tree, const void *key, void *value);
-void Trie_del(Trie *tree, const void *key, destruct_t *del_content);
+_SHARED_API uint64_t Trie_count(const Trie *tree);
+_SHARED_API void *Trie_get(const Trie *tree, const void *key);
+_SHARED_API void Trie_set(Trie *tree, const void *key, void *value);
+_SHARED_API void Trie_del(Trie *tree, const void *key, destruct_t *del_content);
 
 #endif  // LIU_TRIE_H

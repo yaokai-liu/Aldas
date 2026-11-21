@@ -13,12 +13,11 @@ add_compile_options("-Wall" "-Wextra" "-Werror")
 
 add_subdirectory(extstd)
 
-include_directories(include)
-
 file(GLOB_RECURSE MEMAN_SRC RELATIVE ${CMAKE_CURRENT_SOURCE_DIR} src/*.c src/*.h)
 add_library(meman STATIC ${MEMAN_SRC})
 target_include_directories(meman PUBLIC
         ${CMAKE_CURRENT_SOURCE_DIR}/include
         ${CMAKE_CURRENT_SOURCE_DIR}/extstd/include)
 target_link_libraries(meman PUBLIC extstd)
+target_compile_definitions(meman PRIVATE "_BUILDING_SHARED_")
 

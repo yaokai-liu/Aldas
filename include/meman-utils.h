@@ -10,9 +10,8 @@
 
 #include <stdint.h>
 #include "allocator.h"
-#include "key_t.h"
 
-uint64_t char2u64(const char *key);
-uint64_t refer2u64(const REFER(void) *key);
+_SHARED_API uint64_t char2u64(const char *key);
+_SHARED_API uint64_t refer2u64(const REFER(void) *key);
 
 #endif  // MACHINE_UTILS_H

@@ -12,13 +12,14 @@
 #include <stdint.h>
 
 typedef struct Stack Stack;
+extern _SHARED_API const uint32_t sizeof_stack;
 
-Stack *Stack_new(const Allocator *allocator);
-uint32_t Stack_size(const Stack *stack);
-void *Stack_get(const Stack *stack, uint32_t offset);
-void Stack_clear(Stack *stack);
-uint32_t Stack_push(Stack *stack, const void *data, uint32_t size);
-uint32_t Stack_pop(Stack *stack, void *dest, uint32_t size);
-uint32_t Stack_top(const Stack *stack, void *dest, uint32_t size);
-bool Stack_empty(const Stack *stack);
+_SHARED_API Stack *Stack_new(const Allocator *allocator);
+_SHARED_API uint32_t Stack_size(const Stack *stack);
+_SHARED_API void *Stack_get(const Stack *stack, uint32_t offset);
+_SHARED_API void Stack_clear(Stack *stack);
+_SHARED_API uint32_t Stack_push(Stack *stack, const void *data, uint32_t size);
+_SHARED_API uint32_t Stack_pop(Stack *stack, void *dest, uint32_t size);
+_SHARED_API uint32_t Stack_top(const Stack *stack, void *dest, uint32_t size);
+_SHARED_API bool Stack_empty(const Stack *stack);
 #endif  // LIU_STACK_H

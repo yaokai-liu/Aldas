@@ -25,6 +25,7 @@ typedef struct Trie {
   uint64_t count;
   TrieNode *root;
 } Trie;
+const uint32_t sizeof_trie = sizeof(Trie);
 
 static void delTrieNode(TrieNode *trie_node, const Allocator *allocator);
 

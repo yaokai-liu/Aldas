@@ -29,8 +29,6 @@
 #define MACHINE_KEY_T_H
 
 #include <stdint.h>
-#include "allocator.h"
-
 typedef uint64_t key_t(const void *);
 
 #endif  // MACHINE_KEY_T_H
