@@ -19,5 +19,5 @@ target_include_directories(meman PUBLIC
         ${CMAKE_CURRENT_SOURCE_DIR}/include
         ${CMAKE_CURRENT_SOURCE_DIR}/extstd/include)
 target_link_libraries(meman PUBLIC extstd)
-target_compile_definitions(meman PRIVATE "_BUILDING_SHARED_")
+target_compile_definitions(meman PRIVATE "_SHARED_LIB_")
 

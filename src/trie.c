@@ -9,6 +9,7 @@
 #include "array.h"
 #include "avl-traversal.h"
 #include "avl-tree.h"
+#include "key_t.h"
 #include "trie-dump.h"
 
 typedef struct TrieNode TrieNode;
