@@ -5,7 +5,7 @@
  * Copyright (c) 2024 Yaokai Liu. All rights reserved.
  **/
 
-#include "array.h"
+#include "muso/array.h"
 
 typedef struct Array {
   const Allocator *allocator;

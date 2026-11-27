@@ -8,8 +8,8 @@
 #ifndef MACHINE_AVL_TRAVERSAL_H
 #define MACHINE_AVL_TRAVERSAL_H
 
+#include "muso/avl-tree.h"
 #include "array.h"
-#include "avl-tree.h"
 
 typedef struct AVLPair {
   uint64_t key;

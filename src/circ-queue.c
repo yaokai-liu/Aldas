@@ -5,9 +5,8 @@
  * Copyright (c) 2026 Yaokai Liu. All rights reserved.
  **/
 
-#include "circ-queue.h"
-
-#include "array.h"
+#include "muso/circ-queue.h"
+#include "muso/array.h"
 
 typedef struct CircQueue /*extend Array*/ {
   const Allocator *allocator;

@@ -8,10 +8,9 @@
 #ifndef LIU_DICT_H
 #define LIU_DICT_H
 
-
-#include <stdint.h>
+#include "muso/key_t.h"
 #include "allocator.h"
-#include "key_t.h"
+#include <stdint.h>
 
 typedef struct Dict Dict;
 extern _SHARED_API const size_t sizeof_dict;

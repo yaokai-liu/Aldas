@@ -5,8 +5,8 @@
  * Copyright (c) 2024 Yaokai Liu. All rights reserved.
  **/
 
-#include "avl-tree.h"
-#include "avl-traversal.h"
+#include "muso/avl-tree.h"
+#include "muso/avl-traversal.h"
 
 typedef struct AVLNode AVLNode;
 typedef struct AVLNode {

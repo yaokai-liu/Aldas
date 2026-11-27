@@ -1,23 +1,18 @@
 cmake_minimum_required(VERSION 4.3)
-project(meman C)
+project(muso VERSION 0.0.1 LANGUAGES C)
 
-set(CMAKE_C_STANDARD 23)
-set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/output)
-set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/output)
-set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/output)
+include(${CMAKE_CURRENT_SOURCE_DIR}/cmake-modules/ProjectBasicConfig.cmake)
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON CACHE INTERNAL "")
+include(${CMAKE_CURRENT_SOURCE_DIR}/cmake-modules/CompilerOptions.cmake)
 
-add_compile_options("-flto")
-add_compile_options("-O3" "-Os")
-add_compile_options("-Wall" "-Wextra" "-Werror")
+find_package(extstd REQUIRED)
+include_directories(${extstd_INCLUDE_DIRS})
 
-add_subdirectory(extstd)
-
-file(GLOB_RECURSE MEMAN_SRC RELATIVE ${CMAKE_CURRENT_SOURCE_DIR} src/*.c src/*.h)
-add_library(meman STATIC ${MEMAN_SRC})
-target_include_directories(meman PUBLIC
-        ${CMAKE_CURRENT_SOURCE_DIR}/include
-        ${CMAKE_CURRENT_SOURCE_DIR}/extstd/include)
-target_link_libraries(meman PUBLIC extstd)
-target_compile_definitions(meman PRIVATE "_SHARED_LIB_")
-
+file(GLOB_RECURSE ${PROJECT_NAME}_SRC RELATIVE ${CMAKE_CURRENT_SOURCE_DIR} src/*.c src/*.h)
+add_library(${PROJECT_NAME} SHARED ${${PROJECT_NAME}_SRC})
+add_library(${PROJECT_NAME}::${PROJECT_NAME} ALIAS ${PROJECT_NAME})
+target_compile_definitions(${PROJECT_NAME} PRIVATE "_SHARED_LIB_" $<$<BOOL:${ENABLE_TEST_COV}>:_TEST_LOCAL_API_>)
+target_include_directories(${PROJECT_NAME} PUBLIC $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include> $<INSTALL_INTERFACE:include>)
+target_link_libraries(muso PRIVATE extstd::extstd)
+include(${CMAKE_CURRENT_SOURCE_DIR}/cmake-modules/InstallCLibrary.cmake)
+setup_c_library_install(${PROJECT_NAME} DEPENDENCIES extstd)

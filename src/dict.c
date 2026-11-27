@@ -5,13 +5,11 @@
  * Copyright (c) 2025 Yaokai Liu. All rights reserved.
  **/
 
-#include "dict.h"
-
+#include "muso/dict.h"
+#include "muso/array.h"
+#include "muso/avl-tree.h"
+#include "muso/set.h"
 #include <stdio.h>
-
-#include "array.h"
-#include "avl-tree.h"
-#include "set.h"
 
 #define p_key (keys + i * dict->key_size)
 

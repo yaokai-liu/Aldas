@@ -5,7 +5,7 @@
  * Copyright (c) 2024 Yaokai Liu. All rights reserved.
  **/
 
-#include "stack.h"
+#include "muso/stack.h"
 #include "allocator.h"
 #include <string.h>
 

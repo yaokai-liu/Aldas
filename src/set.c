@@ -5,9 +5,9 @@
  * Copyright (c) 2024 Yaokai Liu. All rights reserved.
  **/
 
-#include "set.h"
-#include "array.h"
-#include "avl-tree.h"
+#include "muso/set.h"
+#include "muso/array.h"
+#include "muso/avl-tree.h"
 
 typedef struct Set {
   const Allocator *allocator;

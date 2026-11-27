@@ -5,12 +5,12 @@
  * Copyright (c) 2024 Yaokai Liu. All rights reserved.
  **/
 
-#include "trie.h"
-#include "array.h"
-#include "avl-traversal.h"
-#include "avl-tree.h"
-#include "key_t.h"
-#include "trie-dump.h"
+#include "muso/trie.h"
+#include "muso/array.h"
+#include "muso/avl-traversal.h"
+#include "muso/avl-tree.h"
+#include "muso/key_t.h"
+#include "muso/trie-dump.h"
 
 typedef struct TrieNode TrieNode;
 

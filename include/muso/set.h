@@ -8,9 +8,9 @@
 #ifndef LIU_SET_H
 #define LIU_SET_H
 
-#include <stdint.h>
 #include "allocator.h"
 #include "key_t.h"
+#include <stdint.h>
 
 typedef struct Set Set;
 extern _SHARED_API const uint32_t sizeof_set;
