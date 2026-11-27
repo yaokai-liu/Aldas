@@ -1,0 +1,88 @@
+name: Build & Package muso (Shared)
+
+on:
+  push:
+    branches: [ LIU ]
+    tags: [ 'v*' ]
+  pull_request:
+    branches: [ LIU ]
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    name: ${{ matrix.os_name }} (SHARED)
+    runs-on: ${{ matrix.runner }}
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - runner: ubuntu-latest
+            os_name: linux-x64
+            generator: Ninja
+          - runner: windows-latest
+            os_name: windows-ucrt64
+            generator: Ninja
+
+    defaults:
+      run:
+        shell: ${{ matrix.runner == 'windows-latest' && 'msys2 {0}' || 'bash' }}
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          submodules: recursive
+
+      - name: Setup MSYS2 UCRT64
+        if: matrix.runner == 'windows-latest'
+        uses: msys2/setup-msys2@v2
+        with:
+          msystem: UCRT64
+          update: true
+          install: >-
+            mingw-w64-ucrt-x86_64-gcc
+            mingw-w64-ucrt-x86_64-cmake
+            mingw-w64-ucrt-x86_64-ninja
+
+      - name: Install Ninja on Linux
+        if: matrix.runner == 'ubuntu-latest'
+        run: sudo apt-get update && sudo apt-get install -y ninja-build
+
+      - name: Configure CMake
+        run: |
+          cmake -S . -B build \
+            -G "${{ matrix.generator }}" \
+            -DCMAKE_BUILD_TYPE=Release \
+            -DBUILD_SHARED_LIBS=ON \
+            -DCMAKE_INSTALL_PREFIX="$GITHUB_WORKSPACE/install"
+
+      - name: Build
+        run: cmake --build build --config Release -j
+
+      - name: Install
+        run: cmake --install build --config Release
+
+      - name: Package installed files
+        run: |
+          mkdir -p dist
+          PKG_NAME="muso-${{ matrix.os_name }}-SHARED"
+          if [[ "${{ matrix.runner }}" == windows-* ]]; then
+            tar -czf "dist/${PKG_NAME}.tar.gz" -C install .
+          else
+            tar -czf "dist/${PKG_NAME}.tar.gz" -C install .
+          fi
+
+      - name: Upload packaged artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: muso-${{ matrix.os_name }}-SHARED
+          path: dist/*
+
+      - name: Publish to GitHub Release
+        if: startsWith(github.ref, 'refs/tags/v')
+        uses: softprops/action-gh-release@v2
+        with:
+          files: dist/*
+          generate_release_notes: true
